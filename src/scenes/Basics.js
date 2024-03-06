@@ -54,7 +54,7 @@ class Basics extends Phaser.Scene {
             targets: veryGoodPear,
             ease: 'bounce.easeOut',
             loop: 1,
-            paused: false,
+            paused: true,
             tweens: [
                 {
                     x: w - 64, 
@@ -77,6 +77,10 @@ class Basics extends Phaser.Scene {
 
         // enable scene reload key
         this.reload = this.input.keyboard.addKey('R')
+        this.input.on('pointerdown', () => {
+            veryGoodPear.setPosition(64, 64)
+            pearTweenChain.restart()
+        })
 
         // update instruction text
         document.getElementById('info').innerHTML = '<strong>Basics.js</strong><br>R: Restart current scene'
